@@ -1,6 +1,8 @@
 NAME		=	Cub3D
 EXECUTABLE	=	$PWD/$(NAME)
 
+CLONE 		= 	git clone --depth=1
+
 RED			=	$(shell tput bold setaf 1)
 GREEN		=	$(shell tput setaf 2)
 PURPLE		=	$(shell tput setaf 5)
@@ -12,11 +14,17 @@ RESET		=	$(shell tput -Txterm sgr0)
 CC			=	cc
 CFLAGS		=	-g -Wall -Werror -Wextra -lreadline
 
+MLX			= 	minilibx
+LIBMLX 		= 	$(MLX)/libmlx42.a
+
 include Files.mk
 
 SRCS		= 	$(addsuffix .c,$(addprefix $(SRC_DIR)/,$(FILES)))
 OBJS		= 	$(addsuffix .o,$(addprefix $(OBJ_DIR)/,$(FILES)))
 OBJ_DIR		= 	obj
+
+GNL_SRC		=	gnl/get_next_line_utils.c \
+				gnl/get_next_line.c
 
 NB			=	$(shell echo $(SRCS) | wc -w)
 NUMB2		=	0
@@ -27,7 +35,7 @@ PERCENT		=	0
 all: $(NAME)
 	@if [ $(shell echo $(NUMB3)) -eq 0 ]; then echo "$(BOLD)$(RED)Nothing to be made."; fi
 
-$(NAME): $(OBJS)
+$(NAME): $(LIBMLX) $(OBJS)
 	@make --no-print-directory -s -C libft
 	@echo "$(BOLD)$(RED)Libft compiled$(RESET)"
 	@make --no-print-directory -s -C ft_dprintf
@@ -36,6 +44,13 @@ $(NAME): $(OBJS)
 	@$(CC) $(CFLAGS) $(OBJS) -o $(NAME) libft/libft.a ft_dprintf/dprintf.a
 	@echo "$(BOLD)$(PURPLE)Finished the compilation of the Makefile$(RESET)"
 	@$(eval NUMB3=$(shell echo $$(($(NUMB3)+1))))
+
+$(LIBMLX): $(MLX)
+	$(MAKE) -C $(MLX)
+
+$(MLX):
+	$(CLONE) https://github.com/kodokaii/MLX42.git $(MLX)
+	cmake $(MLX) -B $(MLX)
 
 $(OBJ_DIR)/%.o: %.c
 	@mkdir -p $(@D)
@@ -55,6 +70,7 @@ clean:
 	@echo "$(BOLD)$(BLUE)Finished cleaning all$(RESET)"
 
 fclean: clean
+	@rm -rf minilibx
 	@make --no-print-directory -s fclean -C libft
 	@echo "$(BOLD)$(LIGHTBLUE)Finished fcleaning libft$(RESET)"
 	@make --no-print-directory -s fclean -C ft_dprintf
