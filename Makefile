@@ -47,11 +47,11 @@ $(NAME): $(LIBMLX) $(OBJS)
 	@$(eval NUMB3=$(shell echo $$(($(NUMB3)+1))))
 
 $(LIBMLX): $(MLX)
-	$(MAKE) -C $(MLX)
+	@$(MAKE) --no-print-directory -s -C $(MLX)
 
 $(MLX):
-	$(CLONE) https://github.com/kodokaii/MLX42.git $(MLX)
-	cmake $(MLX) -B $(MLX)
+	@$(CLONE) https://github.com/kodokaii/MLX42.git $(MLX)
+	@cmake $(MLX) -B $(MLX)
 
 $(OBJ_DIR)/%.o: %.c
 	@mkdir -p $(@D)
