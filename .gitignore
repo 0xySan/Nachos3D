@@ -1,0 +1,5 @@
+Cub3D
+*.o
+libft/libft.a
+ft_drprintf/libftprintf.a
+vscode

@@ -1,0 +1,1 @@
+FILES		=	src/main
