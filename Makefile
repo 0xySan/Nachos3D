@@ -13,6 +13,7 @@ RESET		=	$(shell tput -Txterm sgr0)
 
 CC			=	cc
 CFLAGS		=	-g -Wall -Werror -Wextra -lreadline
+CLINKS		= 	-ldl -lglfw -pthread -lm
 
 MLX			= 	minilibx
 LIBMLX 		= 	$(MLX)/libmlx42.a
@@ -41,7 +42,7 @@ $(NAME): $(LIBMLX) $(OBJS)
 	@make --no-print-directory -s -C ft_dprintf
 	@echo "$(BOLD)$(RED)Ft_dprintf compiled$(RESET)"
 	@if [ -f ./$(NAME) ]; then echo "$(BOLD)$(BLUE)Executable already exists.$(RESET)"; else echo "$(BOLD)$(BLUE)Created the executable : $(NAME)$(RESET)"; fi
-	@$(CC) $(CFLAGS) $(OBJS) -o $(NAME) libft/libft.a ft_dprintf/dprintf.a
+	@$(CC) $(CFLAGS) $(OBJS) -o $(NAME) $(GNL_SRC) libft/libft.a ft_dprintf/dprintf.a $(LIBMLX) $(CLINKS)
 	@echo "$(BOLD)$(PURPLE)Finished the compilation of the Makefile$(RESET)"
 	@$(eval NUMB3=$(shell echo $$(($(NUMB3)+1))))
 

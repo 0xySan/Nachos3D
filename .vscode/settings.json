@@ -1,5 +1,11 @@
 {
-	"files.associations": {
-		"nachos3d.h": "c"
-	}
+    "files.associations": {
+        "nachos3d.h": "c",
+        "string_view": "c",
+        "__locale": "c",
+        "__string": "c",
+        "string": "c",
+        "__tree": "c",
+        "map": "c"
+    }
 }

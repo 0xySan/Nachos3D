@@ -1,1 +1,2 @@
-FILES		=	src/main
+FILES		=	src/main \
+				src/parsing/parsing

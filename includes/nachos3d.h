@@ -6,7 +6,7 @@
 # include "../minilibx/mlx42.h"
 # include "../libft/libft.h"
 
-typedef struct t_map
+typedef struct s_map
 {
 	char	*NO_Wall;
 	char	*SO_Wall;
@@ -15,6 +15,8 @@ typedef struct t_map
 	int		floor[3];
 	int		sky[3];
 	char	**map;
-}	s_map;
+}	t_map;
+
+int	parsing(t_map *map, char *path);
 
 #endif
