@@ -3,17 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: etaquet <etaquet@student.42.fr>            +#+  +:+       +#+        */
+/*   By: tle-goff <tle-goff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 15:38:50 by etaquet           #+#    #+#             */
-/*   Updated: 2025/03/17 15:39:48 by etaquet          ###   ########.fr       */
+/*   Updated: 2025/03/17 16:00:09 by tle-goff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/nachos3d.h"
 
-int	main(void)
+int	main(int argc, char **argv)
 {
-	ft_dprintf(1, "Hello World\n");
 	return (0);
 }
