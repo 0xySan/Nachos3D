@@ -6,7 +6,7 @@
 /*   By: etaquet <etaquet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 16:01:29 by etaquet           #+#    #+#             */
-/*   Updated: 2025/03/17 17:39:19 by etaquet          ###   ########.fr       */
+/*   Updated: 2025/03/18 15:20:17 by etaquet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,8 @@ void	write_map_helper(t_map *map, char *line, int i)
 	{
 		temp = ft_split(line, ',');
 		temp2 = ft_substr(temp[0], 2, ft_strlen(temp[0]) - 1);
-		map->floor[0] = ft_atoi(temp2);
-		map->floor[1] = ft_atoi(temp[1]);
-		map->floor[2] = ft_atoi(temp[2]);
+		map->floor = (ft_atoi(temp2) << 24 | ft_atoi(temp[1]) << 16
+			| ft_atoi(temp[2]) << 8 | 255);
 		free(temp);
 		free(temp2);
 	}
@@ -33,9 +32,8 @@ void	write_map_helper(t_map *map, char *line, int i)
 	{
 		temp = ft_split(line, ',');
 		temp2 = ft_substr(temp[0], 2, ft_strlen(temp[0]) - 1);
-		map->sky[0] = ft_atoi(temp2);
-		map->sky[1] = ft_atoi(temp[1]);
-		map->sky[2] = ft_atoi(temp[2]);
+		map->sky = (ft_atoi(temp2) << 24 | ft_atoi(temp[1]) << 16
+			| ft_atoi(temp[2]) << 8 | 255);
 		free(temp);
 		free(temp2);
 	}
@@ -93,73 +91,71 @@ void	ft_exit(int i)
 	exit(i);
 }
 
-int	count_chars_in_str(char *str, char *c)
+void	count_chars_in_str(char *str, char *c, t_map *map, int i)
 {
-	int	i;
-	int	count;
+	int	j;
 	int chars;
 
-	i = 0;
-	count = 0;
-	while (str[i])
+	j = 0;
+	while (str[j])
 	{
 		chars = 0;
 		while (c[chars])
 		{
-			if (str[i] == c[chars])
-				count++;
+			if (str[j] == c[chars])
+			{
+				map->dir = c[chars];
+				map->player++;
+				map->pos[0] = j;
+				map->pos[1] = i - 9;
+			}
 			chars++;
 		}
-		i++;
+		j++;
 	}
-	return (count);
 }
 
-void	check_map_helper(int i, char *line, int *error, int *player)
+void	check_map_helper(int i, char *line, t_map *map)
 {
 	if (i == 1 && (ft_memcmp(line, "NO ", 3) || ft_strlen(line) <= 4))
-		*error = 1;
+		map->error = 1;
 	if (i == 2 && (ft_memcmp(line, "SO ", 3) || ft_strlen(line) <= 4))
-		*error = 2;
+		map->error = 2;
 	if (i == 3 && (ft_memcmp(line, "WE ", 3) || ft_strlen(line) <= 4))
-		*error = 3;
+		map->error = 3;
 	if (i == 4 && (ft_memcmp(line, "EA ", 3) || ft_strlen(line) <= 4))
-		*error = 4;
+		map->error = 4;
 	if (i == 6 && (ft_memcmp(line, "F ", 2) || ft_strlen(line) <= 3))
-		*error = 5;
+		map->error = 5;
 	if (i == 7 && (ft_memcmp(line, "C ", 2) || ft_strlen(line) <= 3))
-		*error = 6;
+		map->error = 6;
 	if (i > 8)
-		*player += count_chars_in_str(line, "NSEW");
+		count_chars_in_str(line, "NSEW", map, i);
 }
 
-void	check_map(char *path)
+void	check_map(char *path, t_map *map)
 {
 	char	*line;
 	int		fd;
 	int		i;
-	int		error;
-	int		player;
 
 	fd = open(path, O_RDONLY);
 	line = get_next_line(fd);
 	i = 1;
-	error = 0;
-	player = 0;
 	while (line)
 	{
-		check_map_helper(i, line, &error, &player);
+		check_map_helper(i, line, map);
 		free(line);
 		line = get_next_line(fd);
 		i++;
 	}
 	free(line);
 	close(fd);
-	if (player != 1)
-		error = 7;
+	if (map->player != 1)
+		map->error = 7;
 	if (i < 11)
-		error = 8;
-	ft_exit(error);
+		map->error = 8;
+	ft_exit(map->error);
 }
 
 int	parsing(t_map *map, char *path)
@@ -168,7 +164,7 @@ int	parsing(t_map *map, char *path)
 	int		fd;
 	int		i;
 
-	check_map(path);
+	check_map(path, map);
 	fd = open(path, O_RDONLY);
 	if (fd == -1)
 	{

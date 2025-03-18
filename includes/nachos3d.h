@@ -8,13 +8,17 @@
 
 typedef struct s_map
 {
-	char	*NO_Wall;
-	char	*SO_Wall;
-	char	*WE_Wall;
-	char	*EA_Wall;
-	int		floor[3];
-	int		sky[3];
-	char	**map;
+	char		*NO_Wall;
+	char		*SO_Wall;
+	char		*WE_Wall;
+	char		*EA_Wall;
+	int			player;
+	int			pos[2];
+	uint32_t	floor;
+	int			error;
+	char		**map;
+	uint32_t	sky;
+	char		dir;
 }	t_map;
 
 int	parsing(t_map *map, char *path);

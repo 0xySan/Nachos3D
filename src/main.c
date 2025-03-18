@@ -6,7 +6,7 @@
 /*   By: etaquet <etaquet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 15:38:50 by etaquet           #+#    #+#             */
-/*   Updated: 2025/03/17 16:08:33 by etaquet          ###   ########.fr       */
+/*   Updated: 2025/03/18 15:19:54 by etaquet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,21 @@ void	check_format_type(char **argv)
 	free(file_ext);
 }
 
+void	init_map(t_map *map)
+{
+	map->pos[0] = 0;
+	map->pos[1] = 0;
+	map->dir = 0;
+	map->NO_Wall = NULL;
+	map->SO_Wall = NULL;
+	map->WE_Wall = NULL;
+	map->EA_Wall = NULL;
+	map->floor = 0;
+	map->sky = 0;
+	map->player = 0;
+	map->error = 0;
+}
+
 int	main(int argc, char **argv)
 {
 	t_map	map;
@@ -37,6 +52,7 @@ int	main(int argc, char **argv)
 		ft_dprintf(2, "Error\nUsage: %s [map_path]\n", argv[0]);
 		return (1);
 	}
+	init_map(&map);
 	check_format_type(argv);
 	if (parsing(&map, argv[1]))
 		return (1);
