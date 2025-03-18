@@ -1,6 +1,6 @@
 Cub3D
 *.o
 libft/libft.a
-ft_drprintf/dprintf.a
+ft_dprintf/dprintf.a
 .vscode
 minilibx
