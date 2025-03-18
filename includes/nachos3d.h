@@ -21,6 +21,11 @@ typedef struct s_map
 	char		dir;
 }	t_map;
 
-int	parsing(t_map *map, char *path);
+int		parsing(t_map *map, char *path);
+int		check_walls(char **map);
+void	write_map(t_map *map, char *path, int len);
+void	free_exit(t_map *map);
+void	ft_exit(int i);
+void	ft_free(t_map *map);
 
 #endif

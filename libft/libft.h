@@ -6,7 +6,7 @@
 /*   By: etaquet <etaquet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 11:45:26 by etaquet           #+#    #+#             */
-/*   Updated: 2025/02/19 16:00:50 by etaquet          ###   ########.fr       */
+/*   Updated: 2025/03/18 15:55:54 by etaquet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,5 +55,6 @@ int				ft_toupper(int c);
 int				ft_tolower(int c);
 void			*ft_realloc(void *ptr, size_t size);
 long long		ft_strtoll(const char *nptr, char **endptr, int base);
+void			ft_free_args(char **args);
 
 #endif

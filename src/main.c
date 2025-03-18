@@ -6,7 +6,7 @@
 /*   By: etaquet <etaquet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 15:38:50 by etaquet           #+#    #+#             */
-/*   Updated: 2025/03/18 15:19:54 by etaquet          ###   ########.fr       */
+/*   Updated: 2025/03/18 16:03:47 by etaquet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,5 +56,8 @@ int	main(int argc, char **argv)
 	check_format_type(argv);
 	if (parsing(&map, argv[1]))
 		return (1);
+	if (map.error)
+		free_exit(&map);
+	ft_free(&map);
 	return (0);
 }
