@@ -1,4 +1,4 @@
-NAME		=	Cub3D
+NAME		=	cub3D
 EXECUTABLE	=	$PWD/$(NAME)
 
 CLONE 		= 	git clone --depth=1
@@ -12,7 +12,7 @@ BOLD		=	$(shell tput bold)
 RESET		=	$(shell tput -Txterm sgr0)
 
 CC			=	cc
-CFLAGS		=	-g -Wall -Werror -Wextra -lreadline
+CFLAGS		=	-g -Wall -Werror -Wextra
 CLINKS		= 	-ldl -lglfw -pthread -lm
 
 MLX			= 	minilibx

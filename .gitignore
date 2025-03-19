@@ -1,4 +1,4 @@
-Cub3D
+cub3D
 *.o
 libft/libft.a
 ft_dprintf/dprintf.a
