@@ -1,7 +1,7 @@
-NO ./path_to_the_north_texture
-SO ./path_to_the_south_texture
-WE ./path_to_the_west_texture
-EA ./path_to_the_east_texture
+NO ./wolftex/eagle.png
+SO ./wolftex/greystone.png
+WE ./wolftex/bluestone.png
+EA ./wolftex/wood.png
 
 F 220,100,0
 C 225,30,0

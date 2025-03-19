@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: etaquet <etaquet@student.42.fr>            +#+  +:+       +#+        */
+/*   By: tle-goff <tle-goff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 15:38:50 by etaquet           #+#    #+#             */
-/*   Updated: 2025/03/19 17:32:09 by etaquet          ###   ########.fr       */
+/*   Updated: 2025/03/19 19:07:09 by tle-goff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ int	**init_int_map(t_map *map)
 		{
 			if (!map->map[i][j] || j > ft_strlen(map->map[i])
 				|| map->map[i][j] == ' ')
-				int_map[i][j] = 2;
+				int_map[i][j] = 1;
 			else if (map->map[i][j] == '1')
 				int_map[i][j] = 1;
 			else
@@ -124,7 +124,6 @@ int	main(int argc, char **argv)
 		free_exit(&map);
 	count_height_and_length(&map);
 	int_map = init_int_map(&map);
-	show_map(int_map, &map);
-	ft_free(&map);
+	start_project(&map, int_map);
 	return (0);
 }
