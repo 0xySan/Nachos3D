@@ -14,6 +14,8 @@ typedef struct s_map
 	char		*EA_Wall;
 	int			player;
 	int			pos[2];
+	size_t		length;
+	size_t		height;
 	uint32_t	floor;
 	int			error;
 	char		**map;
@@ -21,7 +23,7 @@ typedef struct s_map
 	char		dir;
 }	t_map;
 
-int		parsing(t_map *map, char *path);
+void	parsing(t_map *map, char *path);
 int		check_walls(char **map);
 void	write_map(t_map *map, char *path, int len);
 void	free_exit(t_map *map);

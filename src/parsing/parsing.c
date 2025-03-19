@@ -6,7 +6,7 @@
 /*   By: etaquet <etaquet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 16:01:29 by etaquet           #+#    #+#             */
-/*   Updated: 2025/03/18 15:52:01 by etaquet          ###   ########.fr       */
+/*   Updated: 2025/03/19 17:31:49 by etaquet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,11 @@ void	check_map(char *path, t_map *map)
 	int		i;
 
 	fd = open(path, O_RDONLY);
+	if (fd == -1)
+	{
+		ft_dprintf(2, "Error\nCan't open file %s\n", path);
+		exit(1);
+	}
 	line = get_next_line(fd);
 	i = 1;
 	while (line)
@@ -70,7 +75,6 @@ void	check_map(char *path, t_map *map)
 		line = get_next_line(fd);
 		i++;
 	}
-	free(line);
 	close(fd);
 	if (map->player != 1)
 		map->error = 7;
@@ -79,7 +83,7 @@ void	check_map(char *path, t_map *map)
 	ft_exit(map->error);
 }
 
-int	parsing(t_map *map, char *path)
+void	parsing(t_map *map, char *path)
 {
 	char	*line;
 	int		fd;
@@ -87,11 +91,6 @@ int	parsing(t_map *map, char *path)
 
 	check_map(path, map);
 	fd = open(path, O_RDONLY);
-	if (fd == -1)
-	{
-		ft_dprintf(2, "Error\nCan't open file %s\n", path);
-		return (1);
-	}
 	line = get_next_line(fd);
 	i = 1;
 	while (line)
@@ -100,10 +99,8 @@ int	parsing(t_map *map, char *path)
 		line = get_next_line(fd);
 		i++;
 	}
-	free(line);
 	close(fd);
 	write_map(map, path, i);
 	if (check_walls(map->map) == -1)
 		map->error = 9;
-	return (0);
 }
