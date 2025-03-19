@@ -6,7 +6,7 @@
 /*   By: tle-goff <tle-goff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 13:01:28 by tle-goff          #+#    #+#             */
-/*   Updated: 2025/03/19 17:04:44 by tle-goff         ###   ########.fr       */
+/*   Updated: 2025/03/19 19:41:16 by tle-goff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,17 @@ void	key_hook(mlx_key_data_t keydata, void *param)
 	t_raycasting	*data;
 
 	data = param;
+	if (keydata.key == MLX_KEY_ESCAPE)
+	{
+		mlx_close_window(data->mlx);
+		mlx_terminate(data->mlx);
+		free(data->buffer);
+		free(data->texture);
+		ft_free(data->settings);
+		free_tab(data->settings, data->map);
+		free(data);
+		exit(0);
+	}
 	if (keydata.key == MLX_KEY_A || keydata.key == MLX_KEY_D)
 		a_d(keydata, data);
 	else if (keydata.key == MLX_KEY_W || keydata.key == MLX_KEY_S)

@@ -31,6 +31,7 @@ typedef struct s_map
 }	t_map;
 
 void show_map(int **int_map, t_map *map);
+void	free_tab(t_map *map, int **tab);
 
 // Raycasting parts:
 typedef struct s_raycasting

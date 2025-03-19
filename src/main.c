@@ -6,7 +6,7 @@
 /*   By: tle-goff <tle-goff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 15:38:50 by etaquet           #+#    #+#             */
-/*   Updated: 2025/03/19 19:07:09 by tle-goff         ###   ########.fr       */
+/*   Updated: 2025/03/19 19:30:51 by tle-goff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,9 +56,9 @@ int	**init_int_map(t_map *map)
 		j = 0;
 		while (j < map->length)
 		{
-			if (!map->map[i][j] || j > ft_strlen(map->map[i])
-				|| map->map[i][j] == ' ')
-				int_map[i][j] = 1;
+			if (j > ft_strlen(map->map[i])
+				|| !map->map[i][j] || map->map[i][j] == ' ')
+				int_map[i][j] = 2;
 			else if (map->map[i][j] == '1')
 				int_map[i][j] = 1;
 			else
@@ -87,7 +87,7 @@ void	init_map(t_map *map)
 	map->height = 0;
 }
 
-void show_map(int **int_map, t_map *map)
+void	show_map(int **int_map, t_map *map)
 {
 	size_t	i;
 	size_t	j;
@@ -125,5 +125,6 @@ int	main(int argc, char **argv)
 	count_height_and_length(&map);
 	int_map = init_int_map(&map);
 	start_project(&map, int_map);
+	ft_free(&map);
 	return (0);
 }

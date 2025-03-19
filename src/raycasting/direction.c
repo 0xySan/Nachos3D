@@ -6,7 +6,7 @@
 /*   By: tle-goff <tle-goff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 16:32:03 by tle-goff          #+#    #+#             */
-/*   Updated: 2025/03/19 18:59:44 by tle-goff         ###   ########.fr       */
+/*   Updated: 2025/03/19 19:14:52 by tle-goff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,6 @@ void	hit_side(t_raycasting *data)
 			data->mapy += data->stepy;
 			data->side = 1;
 		}
-		printf("x = %i | y = %i\n", data->mapx, data->mapy);
 		if (data->map[data->mapx][data->mapy] > 0)
 			data->hit = 1;
 	}

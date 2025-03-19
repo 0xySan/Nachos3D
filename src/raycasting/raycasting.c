@@ -6,7 +6,7 @@
 /*   By: tle-goff <tle-goff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 16:10:53 by tle-goff          #+#    #+#             */
-/*   Updated: 2025/03/19 19:04:12 by tle-goff         ###   ########.fr       */
+/*   Updated: 2025/03/19 19:36:00 by tle-goff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,6 +123,19 @@ void	direction_selector(t_map *map, t_raycasting *data)
 	}
 }
 
+void	free_tab(t_map *map, int **tab)
+{
+	size_t	i;
+
+	i = 0;
+	while (i < map->height)
+	{
+		free(tab[i]);
+		i++;
+	}
+	free(tab);
+}
+
 void	start_project(t_map *map, int **mapping)
 {
 	t_raycasting	*data;
@@ -150,4 +163,10 @@ void	start_project(t_map *map, int **mapping)
 	mlx_key_hook(data->mlx, key_hook, data);
 	raycasting((void *)data);
 	mlx_loop(mlx);
+	mlx_close_window(data->mlx);
+	mlx_terminate(data->mlx);
+	free_tab(map, data->map);
+	free(data->buffer);
+	free(data->texture);
+	free(data);
 }
