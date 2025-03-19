@@ -72,13 +72,16 @@ typedef struct s_raycasting
 
 void	key_hook(mlx_key_data_t keydata, void *param);
 void	raycasting(void *param);
-void	loadImage(uint32_t texture[pixel_tex * pixel_tex], const char *filename);
-void	drawBuffer(uint32_t buffer[s_height][s_width], mlx_image_t *image);
+void	loadimage(uint32_t texture[pixel_tex * pixel_tex], const char *filename);
+void	drawbuffer(uint32_t buffer[s_height][s_width], mlx_image_t *image);
 void	hit_side(t_raycasting *data);
 void	wall_direction(int linewidth, t_raycasting *data);
 void	if_choice(t_raycasting *data);
 void	raydirection(t_raycasting *data);
 void	draw_extrem(t_raycasting *data);
+void	clear_buffer(t_raycasting *data);
+void	set_elem(t_raycasting *data, int x);
+void	free_tab(t_map *map, int **tab);
 
 void	parsing(t_map *map, char *path);
 int		check_walls(char **map);
@@ -87,6 +90,8 @@ void	free_exit(t_map *map);
 void	ft_exit(int i);
 void	ft_free(t_map *map);
 
+void	check_format_type(char **argv);
+void	free_tab(t_map *map, int **tab);
 void	start_project(t_map *map, int **mapping);
 
 #endif

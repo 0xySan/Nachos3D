@@ -6,4 +6,5 @@ FILES		=	src/main \
 				src/parsing/write \
 				src/parsing/walls \
 				src/error \
+				src/utils \
 				src/raycasting/direction

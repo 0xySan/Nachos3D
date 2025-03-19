@@ -6,27 +6,11 @@
 /*   By: tle-goff <tle-goff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 15:38:50 by etaquet           #+#    #+#             */
-/*   Updated: 2025/03/19 19:30:51 by tle-goff         ###   ########.fr       */
+/*   Updated: 2025/03/19 19:59:34 by tle-goff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/nachos3d.h"
-
-void	check_format_type(char **argv)
-{
-	char		*file_ext;
-
-	file_ext = ft_substr(argv[1],
-			ft_strlen(argv[1]) - 4, ft_strlen(argv[1]));
-	if (ft_memcmp(file_ext, ".cub", 4))
-	{
-		free(file_ext);
-		ft_dprintf(2, "Error\nFormat usage : [map_file.cub] not [%s]\n",
-			argv[1]);
-		exit(1);
-	}
-	free(file_ext);
-}
 
 void	count_height_and_length(t_map *map)
 {
