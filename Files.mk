@@ -7,4 +7,5 @@ FILES		=	src/main \
 				src/parsing/walls \
 				src/error \
 				src/utils \
-				src/raycasting/direction
+				src/raycasting/direction \
+				src/raycasting/mouse

@@ -30,8 +30,9 @@ typedef struct s_map
 	char		dir;
 }	t_map;
 
-void show_map(int **int_map, t_map *map);
+void	show_map(int **int_map, t_map *map);
 void	free_tab(t_map *map, int **tab);
+void	cursor_test(double x, double y, void *param);
 
 // Raycasting parts:
 typedef struct s_raycasting
@@ -46,6 +47,8 @@ typedef struct s_raycasting
 	double		raydirx;
 	double		raydiry;
 	double		camerax;
+	double		mousex;
+	double		mousey;
 	int			mapx;
 	int			mapy;
 	double		sidedistx;

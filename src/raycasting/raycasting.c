@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tle-goff <tle-goff@student.42.fr>          +#+  +:+       +#+        */
+/*   By: etaquet <etaquet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 16:10:53 by tle-goff          #+#    #+#             */
-/*   Updated: 2025/03/19 19:58:41 by tle-goff         ###   ########.fr       */
+/*   Updated: 2025/03/20 14:47:08 by etaquet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,8 @@ void	set_elem_data(t_raycasting *data, t_map *map)
 	data->plane_y = 0;
 	data->v_x = 0;
 	data->v_y = 0;
+	data->mousex = 0;
+	data->mousey = 0;
 	direction_selector(map, data);
 	data->image = mlx_new_image(data->mlx, s_width, s_height);
 	data->mapx = 0;
@@ -120,7 +122,9 @@ void	start_project(t_map *map, int **mapping)
 	loadimage(data->texture[1], map->EA_Wall);
 	loadimage(data->texture[2], map->WE_Wall);
 	loadimage(data->texture[3], map->SO_Wall);
+	mlx_set_cursor_mode(mlx, MLX_MOUSE_HIDDEN);
 	mlx_key_hook(data->mlx, key_hook, data);
+	mlx_cursor_hook(data->mlx, cursor_test, data);
 	raycasting((void *)data);
 	mlx_loop(mlx);
 	mlx_close_window(data->mlx);
