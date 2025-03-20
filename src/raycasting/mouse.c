@@ -6,7 +6,7 @@
 /*   By: etaquet <etaquet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/20 15:00:13 by etaquet           #+#    #+#             */
-/*   Updated: 2025/03/20 15:00:50 by etaquet          ###   ########.fr       */
+/*   Updated: 2025/03/20 15:12:18 by etaquet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	left_move(double x, t_raycasting *data)
 	double	oldplanex;
 	double rotspeed;
 
-	rotspeed = (data->mousex - x) / 100;
+	rotspeed = (data->mousex - x) / 75;
 	if (rotspeed > 0.15)
 		rotspeed = 0.15;
 	olddirx = data->v_x;
@@ -35,7 +35,7 @@ void	move_right(double x, t_raycasting *data)
 	double	oldplanex;
 	double rotspeed;
 
-	rotspeed = (x - data->mousex) / 100;
+	rotspeed = (x - data->mousex) / 75;
 	if (rotspeed > 0.15)
 		rotspeed = 0.15;
 	olddirx = data->v_x;
@@ -57,7 +57,7 @@ void	cursor_test(double x, double y, void *param)
 		move_right(x, data);
 	data->mousex = x;
 	data->mousey = y;
-	if (x < s_width / 2 - 100 || x > s_width / 2 + 100 || y < s_height / 2 - 100 || y > s_height / 2 + 100)
+	if (x < s_width / 2 - 25 || x > s_width / 2 + 25 || y < s_height / 2 - 25 || y > s_height / 2 + 25)
 	{
 		mlx_set_mouse_pos(data->mlx, s_width / 2, s_height / 2);
 		data->mousex = s_width / 2;
